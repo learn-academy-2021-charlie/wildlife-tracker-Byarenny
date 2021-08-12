@@ -5,8 +5,8 @@ Story: As the consumer of the API I can see all the animals in the database. Hin
 **common_name: "Red-eyed tree frog", latin_name: "Agalychnis callidryas", kingdom: "Amphibian"**
 **common_name: "Toco toucan", latin_name: "Ramphastos toco", kingdom: "Aves"**
 **common_name: "Jaguar", latin_name: "Panthera onca", kingdom: "Mammal"**
-
 Story: As the consumer of the API I can update an animal in the database.
+**update method**
 Story: As the consumer of the API I can destroy an animal in the database.
 Story: As the consumer of the API I can create a new animal in the database.
 Story: As the consumer of the API I can create a sighting of an animal with date (use the datetime datatype), a latitude, and a longitude.
@@ -17,3 +17,13 @@ Story: As the consumer of the API, when I view a specific animal, I can also see
 Hint: Checkout the Ruby on Rails API docs on how to include associations.
 Story: As the consumer of the API, I can run a report to list all sightings during a given time period.
 Hint: Your controller can look like this:
+class SightingsController < ApplicationController
+  def index
+    sightings = Sighting.where(date: params[:start_date]..params[:end_date])
+    render json: sightings
+  end
+end
+
+Remember to add the start_date and end_date to what is permitted in your strong parameters method.
+
+
